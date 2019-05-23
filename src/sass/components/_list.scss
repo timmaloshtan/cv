@@ -1,0 +1,11 @@
+.list {
+    list-style: none;
+}
+
+.list__item:not(:last-child) {
+    margin-bottom: .8rem;
+}
+
+.list__item--gapped:not(:last-child) {
+    margin-bottom: 1.6rem;
+}

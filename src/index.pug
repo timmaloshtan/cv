@@ -1,0 +1,223 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible" content="ie=edge")
+        link(
+            href="https://fonts.googleapis.com/css?family=BenchNine:400,700&display=swap"
+            rel="stylesheet"
+        )
+        link(
+            href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:300,400,700&display=swap"
+            rel="stylesheet"
+        )
+        link(
+            href="https://fonts.googleapis.com/css?family=Oswald:300,400,700&display=swap"
+            rel="stylesheet"
+        )
+
+        title Tim Maloshtan CV
+        -
+            require("./images/sprite.svg")
+    body
+        .container
+            .sidebar
+                img(
+                    src=require("./images/phot.jpg")
+                    class="photo"
+                    alt="My photo"
+                )
+                ul.contacts__list
+                    -
+                        var contacts = [
+                            {
+                                icon: "paper-plane",
+                                value: "tim.maloshtan@gmail.com",
+                                link: "mailto:tim.maloshtan@gmail.com",
+                            },
+                            {
+                                icon: "phone",
+                                value: "+38 095 042 23 82",
+                                link: "tel:+38 095 042 23 82"
+                            },
+                            {
+                                icon: "linkedin2",
+                                value: "linkedin.com/in/timmaloshtan",
+                                link: "https://linkedin.com/in/timmaloshtan",
+                            },
+                            {
+                                icon: "git",
+                                value: "github.com/timmaloshtan",
+                                link: "https://github.com/timmaloshtan",
+                            },
+                            {
+                                icon: "location",
+                                value: "Kyiv, Ukraine",
+                            },
+                        ]
+                    each contact in contacts
+                        include pug/mixins.pug
+                        +contact(contact)
+                
+                h3.heading-3 Summary
+                p.paragraph Front-end developer with 2.5+ years of experience in building scalable and maintainable SPA’s.
+                p.paragraph Skilled with JavaScript, React/Redux ecosystem, React form validations, Jest, NPM, Webpack, AJAX/JSON, HTML5, CSS/SASS.
+                p.paragraph I enjoy dynamism and intellectual challenge of web development, particularly opportunities to deep dive into new technologies, and to work with a bunch of talented people.
+                p.paragraph Looking to join an ambitious team with a strong culture of doing things the right way.
+                h3.heading-3 Languages
+                ul.list
+                    -
+                        var languages = [
+                            {
+                                lang: "English",
+                                level: "Advanced",
+                            },
+                            {
+                                lang: "Ukrainian",
+                                level: "Native",
+                            },
+                            {
+                                lang: "Russian",
+                                level: "Native",
+                            },
+                        ]
+                    each language in languages
+                        li.list__item= `${language.lang} - ${language.level}`
+
+                h3.heading-3 Education
+                ul.list
+                    -
+                        var degrees = [
+                            {
+                                title: "JavaScript/DOM/Interfaces",
+                                dates: "Nov - Dec 2017",
+                            },
+                            {
+                                title: "Harvard's CS50: Introduction to Computer Science",
+                                dates: "Nov - Dec 2016",
+                            },
+                            {
+                                title: "Zaporizhzhya National University: Master's in Management",
+                                dates: "2006 - 2011",
+                            },
+                        ]
+                    each degree in degrees
+                        li.list__item.list__item--gapped
+                            p= degree.title
+                            p= `(${degree.dates})`
+                h3.heading-3 Personal qualities
+                ul.list
+                    -
+                        var qualities = [
+                            'Discipline',
+                            'Self-sufficiency',
+                            'Realistic optimism',
+                        ]
+                    each quality in qualities
+                        li.list__item= quality
+                
+                        
+
+            .content
+                h1.heading-1.u-margin-bottom-xs Timofey Maloshtan
+                h2.heading-2 Front-end developer
+                h3.heading-3 Experience
+                .cases
+                    -
+                        var experiences = [
+                            {
+                                title: "Middle Front-end Developer",
+                                whereWhen: "@ PDFfiller Inc., Mar 2018 - Present",
+                                responsibilities: [
+                                    "Developing and maintaining reusable React components",
+                                    "Designing and normalizing application's Redux store",
+                                    "Providing unit test coverage of Redux business logic",
+                                    "Consuming internal REST-ful API (JSON:API)",
+                                    "Collecting requirements for new features",
+                                    "Implementing complex user scenarios within the trusted part of the product",
+                                    "Working hand in hand with design team to solve challenging UI/UX questions",
+                                    "Conducting code reviews and knowledge sharing sessions",
+                                    "Successfully presented and curated the adoption of Git-flow branch management model"
+                                ],
+                                tech: [ "React", "React Router", "React Final Form", "Redux", "Redux Thunk", "Jest", "superagent"],
+                            },
+                            {
+                                title: "Junior Front-end Developer",
+                                whereWhen: "@ PROTOS, Dec 2016 - Feb 2018",
+                                responsibilities: [
+                                    "Developing and maintaining reusable React components",
+                                    "Using Ant Design kit for UI solutions",
+                                    "Participating in POC projects and delivering urgent prototypes",
+                                ],
+                                tech: ["React", "Redux", "Redux Thunk", "AntDesign", "Firebase"]
+                            },
+                            {
+                                title: "Program Specialist",
+                                whereWhen: "@ Teknosell, Nov 2013 – Feb 2018",
+                                responsibilities: [
+                                    "Successfully working autonomously as a part of distributed team",
+                                    "Conducting daily calls with international teams of sales trainees and monthly management sessions with their supervisors",
+                                    "Generating a number of UI/UX improvement ideas that made it into production",
+                                    "Carrying out performance and improvement surveys",
+                                    "Researching, outlining and prototyping training programs for sales and customer service",
+                                    "Regularly working on translation assignments mostly on topics of customer care, sales and automotive industry",
+                                    "Conducting on-boarding of  new operators and coaches",
+                                ]
+                            },
+                        ]
+                    each experience in experiences
+                        .case
+                            h4.case__title= experience.title
+                            h5.case__where-when= experience.whereWhen
+                            ul.case__responsibilities
+                                each responsibility in experience.responsibilities
+                                    li= responsibility
+                            ul.case__technologies
+                                -
+                                    var technologies = experience.tech || []
+                                each technology in technologies
+                                    li.case__technology= technology
+                h3.heading-3 Skills
+                .skills
+                    -
+                        var skills = [
+                            {
+                                title: "HTML/PUG",
+                                level: "50",
+                            },
+                            {
+                                title: "CSS/SASS",
+                                level: "50",
+                            },
+                            {
+                                title: "JavaScript",
+                                level: "70",
+                            },
+                            {
+                                title: "React",
+                                level: "70",
+                            },
+                            {
+                                title: "Redux",
+                                level: "60",
+                            },
+                            {
+                                title: "Webpack",
+                                level: "50",
+                            },
+                            {
+                                title: "Git",
+                                level: "50",
+                            },
+                            {
+                                title: "Brazilian Jiu-Jitsu",
+                                level: "50",
+                            },
+                        ]
+                    each skill in skills
+                        .skill
+                            p.skill__title= skill.title
+                            .skill__level(
+                                style=`--level: ${skill.level}`
+                            )

@@ -1,0 +1,10 @@
+.link:link,
+.link:visited {
+    text-decoration: none;
+    color: currentColor;
+}
+
+.link--blue:hover,
+.link--blue:active {
+    color: $color-tertiary;
+}

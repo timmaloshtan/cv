@@ -1,0 +1,67 @@
+.cases {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 4.5rem;
+}
+
+.cases::before {
+    content: "";
+    width: 2px;
+    background-color: currentColor;
+    display: block;
+    position: absolute;
+    top: -.5rem;
+    bottom: 0;
+    left: 1.5rem;
+}
+
+.case {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+
+.case::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: $color-tertiary;
+    position: absolute;
+    left: calc(-3rem - 5px);
+    top: calc(.9rem);
+}
+
+.case__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.case__where-when {
+    font-size: 1.5rem;
+    opacity: .6;
+    font-weight: 700;
+}
+
+.case__responsibilities {
+    margin-left: 2rem;
+}
+
+.case__technologies {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.case__technology {
+    display: block;
+    margin-bottom: .5rem;
+    color: $color-secondary;
+    background-color: $color-tertiary;
+    padding: 0 1rem;
+    border-radius: 2000px;
+}
+
+.case__technology:not(:last-child) {
+    margin-right: 1rem;
+}

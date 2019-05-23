@@ -1,0 +1,26 @@
+.contacts__list {
+    list-style: none;
+    margin-bottom: 1rem;
+}
+
+.contacts__item {
+    display: flex;
+    align-items: center;
+}
+
+.contacts__item:not(:last-child) {
+    margin-bottom: .8rem;
+}
+
+.contacts__icon {
+    height: 2rem;
+    width: 2rem;
+    fill: currentColor;
+}
+
+.contacts__text {
+    display: inline-block;
+    position: relative;
+    padding-left: 1rem;
+    margin-left: 1rem;
+}

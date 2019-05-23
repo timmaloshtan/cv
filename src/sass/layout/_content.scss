@@ -1,0 +1,9 @@
+.content {
+    background-color: $color-secondary;
+    padding: 2rem $container-side-padding;
+    flex: 1;
+    color: $color-primary;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}

@@ -1,0 +1,12 @@
+.container {
+    margin: 0 auto;
+
+    font-size: 1.5rem;
+
+    width: 90rem;
+    min-height: 100vh;
+
+    display: flex;
+
+    background-color: $color-primary;
+}

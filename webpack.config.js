@@ -1,15 +1,33 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
-  entry: './sass/main.scss',
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'css/style.css',
-  },
-  mode: 'development',
-  module: {
+
+module.exports = (env, argv) => {
+  const entry = './src/index.js';
+  
+  const output = {
+    path: path.resolve(__dirname, 'docs'),
+  };
+  
+  const devServer = {
+    inline: true,
+    port: 8080,
+  };
+  
+  const plugins = [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'src/index.pug'),
+      favicon: path.join(__dirname, 'src/images/favicon.png'),
+      cache: false,
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({ filename: 'css/[name].css' }),
+  ];
+
+  const module = {
     rules: [
       {
         test: /\.pug$/,
@@ -17,20 +35,22 @@ module.exports = {
       },
       {
         test: /\.(css|sass|scss)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
             },
-            {
-              loader: 'postcss-loader',
-            },
-            {
-              loader: 'sass-loader',
-            },
-          ]
-        })
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'postcss-loader',
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ]
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
@@ -39,26 +59,20 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              publicPath: "../",
-              name: 'img/[name].[ext]',
+              publicPath: "./",
+              name: 'images/[name].[ext]',
             }
           }
         ],
       }
     ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './index.pug',
-      filename: 'index.html',
-      favicon: 'img/favicon.png',
-      cache: false,
-    }),
-    new ExtractTextPlugin('css/style.css'),
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, 'build'),
-    compress: true,
-    port: 8080,
-  },
+  };
+
+  return {
+    entry,
+    output,
+    module,
+    plugins,
+    devServer,
+  }
 };

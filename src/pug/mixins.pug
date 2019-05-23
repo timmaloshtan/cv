@@ -1,0 +1,12 @@
+mixin contact(contact)
+    li.contacts__item
+        svg(class="contacts__icon")
+            use(xlink:href=`images/sprite.svg#icon-${contact.icon}`)
+        if contact.link
+            span(class="contacts__text")
+                a(
+                    class="link link--blue"
+                    href=`${contact.link}`
+                )= contact.value
+        else
+            span(class="contacts__text")= contact.value
